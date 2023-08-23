@@ -35,16 +35,14 @@ def DTMatrix(words, TNG_train, TNG_cv, reduced_doc=20):
 
 
 def sim_cos(cosines, TNG_train, docs_cmp=150):
-    col=5
+    col=3
     most_similar_indices = np.argsort(cosines)[-docs_cmp-1:-1][::-1]
     most_similar_doc = [TNG_train.target_names[TNG_train.target[i]] for i in most_similar_indices]
     print ("Documento elegido: \n\t", TNG_train.target_names[TNG_train.target[0]])
     print ("Mayoes similitud coseno con otros documentos:")
     docs_cmp = int(docs_cmp/col)
     for i in range(docs_cmp):
-        print("{:.5f}  {:<25}  {:.5f}  {:<25}  {:.5f}  {:<25} {:.5f}  {:<25}  {:.5f}  {:<25}".format(
+        print("{:.5f}  {:<25}  {:.5f}  {:<25}  {:.5f}  {:<25}".format(
             cosines[most_similar_indices[i]], most_similar_doc[i],
             cosines[most_similar_indices[i+docs_cmp]], most_similar_doc[i+docs_cmp],
-            cosines[most_similar_indices[i+2*docs_cmp]], most_similar_doc[i+2*docs_cmp],
-            cosines[most_similar_indices[i+3*docs_cmp]], most_similar_doc[i+3*docs_cmp],
-            cosines[most_similar_indices[i+4*docs_cmp]], most_similar_doc[i+4*docs_cmp]))
+            cosines[most_similar_indices[i+2*docs_cmp]], most_similar_doc[i+2*docs_cmp]))
